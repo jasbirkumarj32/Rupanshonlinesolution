@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rupansh Online Solutions</title>
+<style>
+  :root{
+    --ink:#1c2b1f;
+    --paper:#f3f0e6;
+    --accent:#e8632c;
+    --accent-deep:#b8431a;
+    --line:#d8d2c2;
+    --green:#33543e;
+    --green-light:#4f7a5e;
+    --mono: 'Courier New', monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family: Georgia, 'Times New Roman', serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.5;
+  }
+  header{
+    background:var(--green);
+    color:var(--paper);
+    padding:18px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom:4px solid var(--accent);
+  }
+  header .logo{
+    font-family: var(--mono);
+    font-size:1.4rem;
+    font-weight:bold;
+    letter-spacing:1px;
+  }
+  header .logo span{color:var(--accent);}
+  nav button{
+    background:none;
+    border:1px solid var(--paper);
+    color:var(--paper);
+    padding:8px 14px;
+    margin-left:8px;
+    font-family:var(--mono);
+    font-size:.85rem;
+    cursor:pointer;
+    border-radius:3px;
+    transition:.2s;
+  }
+  nav button:hover{background:var(--accent); border-color:var(--accent);}
+  main{
+    max-width:880px;
+    margin:0 auto;
+    padding:30px 20px 60px;
+  }
+  .hero{
+    text-align:center;
+    padding:40px 10px 30px;
+    border-bottom:2px dashed var(--line);
+    margin-bottom:30px;
+  }
+  .hero h1{
+    font-size:2.4rem;
+    color:var(--green);
+    margin-bottom:10px;
+  }
+  .hero p{color:#5a5347; font-size:1.05rem;}
+  .ticket{
+    background:#fff;
+    border:1px solid var(--line);
+    border-left:6px solid var(--accent);
+    border-radius:4px;
+    padding:22px;
+    margin-bottom:18px;
+    box-shadow:2px 3px 0 var(--line);
+  }
+  .ticket h2{
+    font-family:var(--mono);
+    font-size:1.1rem;
+    color:var(--green);
+    margin-bottom:14px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    border-bottom:1px solid var(--line);
+    padding-bottom:8px;
+  }
+  label{
+    display:block;
+    font-family:var(--mono);
+    font-size:.8rem;
+    color:#6b6354;
+    margin-top:12px;
+    margin-bottom:4px;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+  }
+  input, select, textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid var(--line);
+    border-radius:3px;
+    font-family:inherit;
+    font-size:1rem;
+    background:#fbfaf6;
+  }
+  input:focus, select:focus, textarea:focus{
+    outline:2px solid var(--accent);
+    outline-offset:1px;
+  }
+  .btn{
+    display:inline-block;
+    margin-top:16px;
+    background:var(--accent);
+    color:#fff;
+    border:none;
+    padding:11px 22px;
+    font-family:var(--mono);
+    font-size:.9rem;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    border-radius:3px;
+    cursor:pointer;
+    transition:.2s;
+  }
+  .btn:hover{background:var(--accent-deep);}
+  .btn.secondary{
+    background:var(--green);
+  }
+  .btn.secondary:hover{background:var(--green-light);}
+  .btn.danger{background:#9c3a3a;}
+  .btn.danger:hover{background:#7c2c2c;}
+  .row{display:flex; gap:12px; flex-wrap:wrap;}
+  .row > div{flex:1; min-width:160px;}
+  .hint{font-size:.85rem; color:#7a7264; margin-top:6px;}
+  .contact-box{
+    background:var(--green);
+    color:var(--paper);
+    padding:18px 22px;
+    border-radius:4px;
+    text-align:center;
+    margin-bottom:24px;
+    font-family:var(--mono);
+  }
+  .contact-box .num{
+    font-size:1.6rem;
+    color:var(--accent);
+    font-weight:bold;
+    letter-spacing:1px;
+  }
+  .switch{
+    text-align:center;
+    margin-top:16px;
+    font-size:.9rem;
+  }
+  .switch a{color:var(--accent-deep); cursor:pointer; text-decoration:underline;}
+  .badge{
+    display:inline-block;
+    font-family:var(--mono);
+    font-size:.7rem;
+    padding:3px 8px;
+    border-radius:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+  }
+  .badge.new{background:#f4d35e; color:#5a4400;}
+  .badge.called{background:#a8c9b0; color:#1f3d28;}
+  .badge.cash{background:#e8d9c5; color:#5a4326;}
+  .booking-row{
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:14px 16px;
+    margin-bottom:12px;
+    background:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .booking-row .info b{color:var(--green);}
+  .booking-row .info .meta{font-size:.85rem; color:#7a7264; margin-top:4px;}
+  .booking-row .actions{display:flex; gap:8px; flex-wrap:wrap;}
+  .empty{
+    text-align:center;
+    color:#9b9486;
+    padding:30px 10px;
+    font-style:italic;
+  }
+  .hidden{display:none !important;}
+  .top-alert{
+    background:var(--accent);
+    color:#fff;
+    text-align:center;
+    padding:10px;
+    font-family:var(--mono);
+    font-size:.85rem;
+    letter-spacing:.5px;
+  }
+  footer{
+    text-align:center;
+    padding:20px;
+    color:#9b9486;
+    font-size:.8rem;
+    border-top:1px solid var(--line);
+  }
+  .stat-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+    margin-bottom:24px;
+  }
+  .stat-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:16px;
+    text-align:center;
+  }
+  .stat-card .num{font-size:1.8rem; color:var(--accent-deep); font-family:var(--mono); font-weight:bold;}
+  .stat-card .lab{font-size:.8rem; color:#7a7264; text-transform:uppercase; letter-spacing:1px; margin-top:4px;}
+  @media (max-width:560px){
+    .stat-grid{grid-template-columns:1fr;}
+    header{flex-direction:column; gap:10px; text-align:center;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">RUPANSH<span>ONLINE</span></div>
+  <nav id="navButtons"></nav>
+</header>
+
+<div id="alertBar" class="top-alert hidden"></div>
+
+<main id="app"></main>
+
+<footer>© Rupansh Online Solutions — Online Booking System</footer>
+
+<script>
+/* ---------- DATA LAYER (localStorage) ---------- */
+const DB = {
+  load(key, def){ try{ return JSON.parse(localStorage.getItem(key)) ?? def; }catch(e){ return def; } },
+  save(key, val){ localStorage.setItem(key, JSON.stringify(val)); }
+};
+
+const ADMIN_ID = "8287738592";
+const ADMIN_PASS = "anshu@828";
+const SHOP_PHONE = "+91-8130670350"; // <-- Apna number yahan daalein
+
+let users = DB.load('users', []);          // {name, phone, email, password}
+let bookings = DB.load('bookings', []);    // {id, customer, phone, service, details, payment, status, time}
+let session = DB.load('session', null);    // {type:'customer'|'admin', phone?}
+let chats = DB.load('chats', {});          // { [phone]: [ {from:'customer'|'RUPANSH', text, time} ] }
+
+/* ---------- HELPERS ---------- */
+function uid(){ return 'BK' + Math.random().toString(36).slice(2,8).toUpperCase(); }
+function now(){ return new Date().toLocaleString('en-IN'); }
+function showAlert(msg, ms=2500){
+  const bar = document.getElementById('alertBar');
+  bar.textContent = msg;
+  bar.classList.remove('hidden');
+  setTimeout(()=>bar.classList.add('hidden'), ms);
+}
+function go(view){
+  session = DB.load('session', null);
+  render(view);
+}
+
+/* ---------- CHAT HELPERS ---------- */
+function getThread(phone){
+  if(!chats[phone]) chats[phone] = [];
+  return chats[phone];
+}
+function unreadCustomer(phone){
+  const thread = chats[phone] || [];
+  return thread.some(m => m.from==='admin' && !m.readByCustomer);
+}
+function unreadAdmin(){
+  return Object.values(chats).some(thread => thread.some(m => m.from==='customer' && !m.readByAdmin));
+}
+
+/* ---------- NAV ---------- */
+function renderNav(){
+  const nav = document.getElementById('navButtons');
+  nav.innerHTML = '';
+  if(session && session.type === 'customer'){
+    nav.innerHTML = `
+      <button onclick="go('booking')">Booking Karein</button>
+      <button onclick="go('mybookings')">Meri Bookings</button>
+      <button onclick="go('chat')">Chat${unreadCustomer(session.phone) ? '99+' : ''}</button>
+      <button onclick="logout()">Logout</button>
+    `;
+  } else if(session && session.type === 'admin'){
+    nav.innerHTML = `
+      <button onclick="go('admin')">Dashboard</button>
+      <button onclick="go('chatlist')">Chats${unreadAdmin() ? ' 🔴' : ''}</button>
+      <button onclick="logout()">Logout</button>
+    `;
+  } else {
+    nav.innerHTML = `
+      <button onclick="go('login')">Login</button>
+      <button onclick="go('register')">Register</button>
+      <button onclick="go('adminlogin')">Admin</button>
+    `;
+  }
+}
+
+function logout(){
+  session = null;
+  DB.save('session', null);
+  go('home');
+}
+
+/* ---------- VIEWS ---------- */
+function render(view='home', arg=null){
+  renderNav();
+  const app = document.getElementById('app');
+
+  if(view === 'home') return renderHome(app);
+  if(view === 'register') return renderRegister(app);
+  if(view === 'login') return renderLogin(app);
+  if(view === 'adminlogin') return renderAdminLogin(app);
+  if(view === 'booking'){
+    if(!session || session.type!=='customer'){ return renderLogin(app, 'Pehle login karein'); }
+    return renderBooking(app);
+  }
+  if(view === 'mybookings'){
+    if(!session || session.type!=='customer'){ return renderLogin(app); }
+    return renderMyBookings(app);
+  }
+  if(view === 'chat'){
+    if(!session || session.type!=='customer'){ return renderLogin(app); }
+    return renderChat(app);
+  }
+  if(view === 'chatlist'){
+    if(!session || session.type!=='admin'){ return renderAdminLogin(app); }
+    return renderChatList(app);
+  }
+  if(view === 'adminchat'){
+    if(!session || session.type!=='admin'){ return renderAdminLogin(app); }
+    return renderAdminChat(app, arg);
+  }
+  if(view === 'admin'){
+    if(!session || session.type!=='admin'){ return renderAdminLogin(app); }
+    return renderAdmin(app);
+  }
+  renderHome(app);
+}
+
+function renderHome(app){
+  app.innerHTML = `
+    <div class="hero">
+      <h1>Rupansh Online Solutions</h1>
+      <p>Online printing, photocopy, form filling, Aadhaar/PAN work, ID card, lamination aur sabhi online services — ghar baithe booking karein.</p>
+    </div>
+    <div class="contact-box">
+      Hamse seedha baat karein<br>
+      <span class="num">${SHOP_PHONE}</span>
+    </div>
+    <div class="ticket">
+      <h2>Kaise kaam karta hai</h2>
+      <p>1. Account banayein ya login karein.</p>
+      <p>2. Apni service select karein aur details bharein.</p>
+      <p>3. Payment option chunein (Cash / UPI on visit).</p>
+      <p>4. Booking submit karne ke baad <b>Admin ko notification milegi</b> aur woh aapko call karke confirm karega.</p>
+    </div>
+    <div style="text-align:center; margin-top:20px;">
+      <button class="btn" onclick="go('register')">Account Banayein</button>
+      <button class="btn secondary" onclick="go('login')">Login Karein</button>
+    </div>
+  `;
+}
+
+function renderRegister(app){
+  app.innerHTML = `
+    <div class="ticket" style="max-width:420px; margin:0 auto;">
+      <h2>Naya Account Banayein</h2>
+      <label>Naam</label>
+      <input id="r_name" placeholder="Apka naam">
+      <label>Phone Number</label>
+      <input id="r_phone" placeholder="10 digit mobile number" maxlength="10">
+      <label>Email (optional)</label>
+      <input id="r_email" placeholder="email@example.com">
+      <label>Password</label>
+      <input id="r_pass" type="password" placeholder="Password banayein">
+      <button class="btn" onclick="doRegister()">Register Karein</button>
+      <div class="switch">Pehle se account hai? <a onclick="go('login')">Login karein</a></div>
+    </div>
+  `;
+}
+
+function doRegister(){
+  const name = document.getElementById('r_name').value.trim();
+  const phone = document.getElementById('r_phone').value.trim();
+  const email = document.getElementById('r_email').value.trim();
+  const pass = document.getElementById('r_pass').value;
+
+  if(!name || !phone || !pass){ showAlert('Sabhi zaroori fields bharein'); return; }
+  if(!/^\d{10}$/.test(phone)){ showAlert('Sahi 10 digit phone number daalein'); return; }
+  if(users.find(u=>u.phone===phone)){ showAlert('Yeh phone number pehle se registered hai'); return; }
+
+  users.push({name, phone, email, password: pass});
+  DB.save('users', users);
+  session = {type:'customer', phone};
+  DB.save('session', session);
+  showAlert('Account ban gaya! Welcome ' + name);
+  go('booking');
+}
+
+function renderLogin(app, msg){
+  app.innerHTML = `
+    <div class="ticket" style="max-width:420px; margin:0 auto;">
+      <h2>Customer Login</h2>
+      ${msg ? `<p class="hint" style="color:var(--accent-deep)">${msg}</p>` : ''}
+      <label>Phone Number</label>
+      <input id="l_phone" placeholder="10 digit mobile number" maxlength="10">
+      <label>Password</label>
+      <input id="l_pass" type="password" placeholder="Password">
+      <button class="btn" onclick="doLogin()">Login</button>
+      <div class="switch">Account nahi hai? <a onclick="go('register')">Register karein</a></div>
+    </div>
+  `;
+}
+
+function doLogin(){
+  const phone = document.getElementById('l_phone').value.trim();
+  const pass = document.getElementById('l_pass').value;
+  const u = users.find(u=>u.phone===phone && u.password===pass);
+  if(!u){ showAlert('Phone number ya password galat hai'); return; }
+  session = {type:'customer', phone};
+  DB.save('session', session);
+  showAlert('Welcome back, ' + u.name);
+  go('booking');
+}
+
+function renderAdminLogin(app){
+  app.innerHTML = `
+    <div class="ticket" style="max-width:420px; margin:0 auto;">
+      <h2>Admin Login</h2>
+      <label>Admin Phone Number</label>
+      <input id="a_id" placeholder="Phone number">
+      <label>Password</label>
+      <input id="a_pass" type="password" placeholder="Password">
+      <button class="btn secondary" onclick="doAdminLogin()">Login</button>
+    </div>
+  `;
+}
+
+function doAdminLogin(){
+  const id = document.getElementById('a_id').value.trim();
+  const pass = document.getElementById('a_pass').value;
+  if(id === ADMIN_ID && pass === ADMIN_PASS){
+    session = {type:'admin'};
+    DB.save('session', session);
+    go('admin');
+  } else {
+    showAlert('Admin ID ya password galat hai');
+  }
+}
+
+function renderBooking(app){
+  const u = users.find(u=>u.phone===session.phone);
+  app.innerHTML = `
+    <div class="ticket">
+      <h2>Naya Booking / Order</h2>
+      <p class="hint">Login: <b>${u ? u.name : ''}</b> (${session.phone})</p>
+      <label>Service Type</label>
+      <select id="b_service">
+        <option>Printing / Photocopy</option>
+        <option>Online Form Fill (Govt/Other)</option>
+        <option>Aadhaar / PAN Card Work</option>
+        <option>Passport Size Photo</option>
+        <option>Lamination / Spiral Binding</option>
+        <option>Internet Browsing / Computer Use</option>
+        <option>Other</option>
+      </select>
+
+      <label>Details / Requirement</label>
+      <textarea id="b_details" rows="3" placeholder="Apni requirement yahan likhein (kitne pages, kab tak chahiye, etc.)"></textarea>
+
+      <div class="row">
+        <div>
+          <label>Contact Number (call ke liye)</label>
+          <input id="b_phone" value="${session.phone}" maxlength="10">
+        </div>
+        <div>
+          <label>Payment Option</label>
+          <select id="b_payment">
+            <option value="Cash on Visit">Cash on Visit</option>
+            <option value="UPI on Visit">UPI on Visit (Dukan par)</option>
+          </select>
+        </div>
+      </div>
+      <p class="hint">Note: Yeh website sirf offline payment support karti hai. Payment dukan par karein.</p>
+      <button class="btn" onclick="submitBooking()">Booking Submit Karein</button>
+    </div>
+  `;
+}
+
+function submitBooking(){
+  const service = document.getElementById('b_service').value;
+  const details = document.getElementById('b_details').value.trim();
+  const phone = document.getElementById('b_phone').value.trim();
+  const payment = document.getElementById('b_payment').value;
+  const u = users.find(u=>u.phone===session.phone);
+
+  if(!/^\d{10}$/.test(phone)){ showAlert('Sahi contact number daalein'); return; }
+
+  const booking = {
+    id: uid(),
+    customer: u ? u.name : 'Unknown',
+    phone,
+    service,
+    details: details || '(No details)',
+    payment,
+    status: 'New',
+    time: now()
+  };
+  bookings.unshift(booking);
+  DB.save('bookings', bookings);
+  showAlert('Booking submit ho gaya! Admin ko notification mil gayi hai. Woh aapko call karega.', 4000);
+  go('mybookings');
+}
+
+function renderMyBookings(app){
+  const mine = bookings.filter(b=>b.phone===session.phone);
+  app.innerHTML = `
+    <div class="ticket">
+      <h2>Meri Bookings</h2>
+      ${mine.length===0 ? '<div class="empty">Abhi koi booking nahi hai. "Booking Karein" se naya order dein.</div>' : ''}
+      ${mine.map(b=>`
+        <div class="booking-row">
+          <div class="info">
+            <b>${b.service}</b> — <span class="badge ${b.status==='New'?'new':'called'}">${b.status==='New' ? 'Pending' : 'Admin Ne Call Kiya'}</span>
+            <div class="meta">${b.details}</div>
+            <div class="meta">Payment: ${b.payment} | Time: ${b.time}</div>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+    <div style="text-align:center;">
+      <button class="btn" onclick="go('booking')">+ Nayi Booking</button>
+    </div>
+  `;
+}
+
+/* ---------- CHAT VIEWS ---------- */
+function renderChat(app){
+  chats = DB.load('chats', {});
+  const u = users.find(u=>u.phone===session.phone);
+  const phone = session.phone;
+  const thread = getThread(phone);
+  // mark admin messages as read
+  thread.forEach(m=>{ if(m.from==='admin') m.readByCustomer = true; });
+  DB.save('chats', chats);
+
+  app.innerHTML = `
+    <div class="ticket">
+      <h2>Admin Se Chat</h2>
+      <p class="hint">Aapka koi sawal ya order ke baare me baat karne ke liye yahan message karein. Admin yahan reply karega.</p>
+      <div id="chatBox" style="max-height:340px; overflow-y:auto; border:1px solid var(--line); border-radius:4px; padding:10px; background:#fbfaf6; margin-top:10px;">
+        ${thread.length===0 ? '<div class="empty">Abhi koi message nahi hai. Neeche se shuru karein.</div>' : ''}
+        ${thread.map(m=>`
+          <div style="text-align:${m.from==='customer'?'right':'left'}; margin-bottom:8px;">
+            <div style="display:inline-block; max-width:80%; padding:8px 12px; border-radius:10px; background:${m.from==='customer'?'var(--green)':'#e8d9c5'}; color:${m.from==='customer'?'var(--paper)':'var(--ink)'}; font-size:.9rem;">
+              ${escapeHtml(m.text)}
+              <div style="font-size:.7rem; opacity:.7; margin-top:3px;">${m.time}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <div style="flex:3;">
+          <input id="chatInput" placeholder="Apna message likhein..." onkeydown="if(event.key==='Enter') sendCustomerMessage()">
+        </div>
+        <div style="flex:1;">
+          <button class="btn" style="width:100%; margin-top:0;" onclick="sendCustomerMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  `;
+  const box = document.getElementById('chatBox');
+  if(box) box.scrollTop = box.scrollHeight;
+}
+
+function sendCustomerMessage(){
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  const thread = getThread(session.phone);
+  thread.push({from:'customer', text, time: now(), readByAdmin:false, readByCustomer:true});
+  DB.save('chats', chats);
+  input.value = '';
+  renderChat(document.getElementById('app'));
+}
+
+function renderChatList(app){
+  chats = DB.load('chats', {});
+  const phones = Object.keys(chats).filter(p => chats[p].length > 0);
+
+  app.innerHTML = `
+    <div class="hero" style="padding:10px 0 20px;">
+      <h1 style="font-size:1.8rem;">Customer Chats</h1>
+      <p>Customers ke messages yahan dikhenge. Reply karne ke liye open karein.</p>
+    </div>
+    <div class="ticket">
+      ${phones.length===0 ? '<div class="empty">Abhi koi chat nahi hai.</div>' : ''}
+      ${phones.map(p=>{
+        const u = users.find(u=>u.phone===p);
+        const thread = chats[p];
+        const last = thread[thread.length-1];
+        const unread = thread.some(m=>m.from==='customer' && !m.readByAdmin);
+        return `
+          <div class="booking-row" style="cursor:pointer;" onclick="render('adminchat','${p}')">
+            <div class="info">
+              <b>${u ? u.name : 'Unknown'}</b> (${p}) ${unread ? '<span class="badge new">New</span>' : ''}
+              <div class="meta">${escapeHtml(last.text).slice(0,60)}${last.text.length>60?'...':''}</div>
+              <div class="meta">Time: ${last.time}</div>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function renderAdminChat(app, phone){
+  chats = DB.load('chats', {});
+  const u = users.find(u=>u.phone===phone);
+  const thread = getThread(phone);
+  thread.forEach(m=>{ if(m.from==='customer') m.readByAdmin = true; });
+  DB.save('chats', chats);
+
+  app.innerHTML = `
+    <div class="ticket">
+      <h2>Chat — ${u ? u.name : 'Unknown'} (${phone})</h2>
+      <div id="chatBox" style="max-height:340px; overflow-y:auto; border:1px solid var(--line); border-radius:4px; padding:10px; background:#fbfaf6; margin-top:10px;">
+        ${thread.length===0 ? '<div class="empty">Abhi koi message nahi hai.</div>' : ''}
+        ${thread.map(m=>`
+          <div style="text-align:${m.from==='admin'?'right':'left'}; margin-bottom:8px;">
+            <div style="display:inline-block; max-width:80%; padding:8px 12px; border-radius:10px; background:${m.from==='admin'?'var(--green)':'#e8d9c5'}; color:${m.from==='admin'?'var(--paper)':'var(--ink)'}; font-size:.9rem;">
+              ${escapeHtml(m.text)}
+              <div style="font-size:.7rem; opacity:.7; margin-top:3px;">${m.time}</div>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="row" style="margin-top:10px;">
+        <div style="flex:3;">
+          <input id="chatInput" placeholder="Reply likhein..." onkeydown="if(event.key==='Enter') sendAdminMessage('${phone}')">
+        </div>
+        <div style="flex:1;">
+          <button class="btn" style="width:100%; margin-top:0;" onclick="sendAdminMessage('${phone}')">Send</button>
+        </div>
+      </div>
+      <button class="btn secondary" style="margin-top:14px;" onclick="render('chatlist')">← Sabhi Chats</button>
+    </div>
+  `;
+  const box = document.getElementById('chatBox');
+  if(box) box.scrollTop = box.scrollHeight;
+}
+
+function sendAdminMessage(phone){
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if(!text) return;
+  const thread = getThread(phone);
+  thread.push({from:'admin', text, time: now(), readByAdmin:true, readByCustomer:false});
+  DB.save('chats', chats);
+  input.value = '';
+  renderAdminChat(document.getElementById('app'), phone);
+}
+
+function escapeHtml(str){
+  const div = document.createElement('div');
+  div.textContent = str;
+  return div.innerHTML;
+}
+
+function renderAdmin(app){
+  bookings = DB.load('bookings', []);
+  const newCount = bookings.filter(b=>b.status==='New').length;
+  const calledCount = bookings.filter(b=>b.status==='Called').length;
+
+  app.innerHTML = `
+    <div class="hero" style="padding:10px 0 20px;">
+      <h1 style="font-size:1.8rem;">Admin Dashboard</h1>
+      <p>Naye orders ki notification yahan dikhegi. Customer ko call karke order confirm karein.</p>
+    </div>
+    <div class="stat-grid">
+      <div class="stat-card"><div class="num">${bookings.length}</div><div class="lab">Total Orders</div></div>
+      <div class="stat-card"><div class="num">${newCount}</div><div class="lab">New / Pending</div></div>
+      <div class="stat-card"><div class="num">${calledCount}</div><div class="lab">Called</div></div>
+    </div>
+    <div class="ticket">
+      <h2>Saare Orders</h2>
+      ${bookings.length===0 ? '<div class="empty">Abhi koi order nahi aaya hai.</div>' : ''}
+      ${bookings.map(b=>`
+        <div class="booking-row">
+          <div class="info">
+            <b>${b.customer}</b> — ${b.service}
+            <span class="badge ${b.status==='New'?'new':'called'}">${b.status}</span>
+            <span class="badge cash">${b.payment}</span>
+            <div class="meta">📞 ${b.phone}</div>
+            <div class="meta">${b.details}</div>
+            <div class="meta">Time: ${b.time}</div>
+          </div>
+          <div class="actions">
+            <a class="btn secondary" style="text-decoration:none;" href="tel:${b.phone}">Call Karein</a>
+            ${b.status==='New' ? `<button class="btn" onclick="markCalled('${b.id}')">Called Mark Karein</button>` : ''}
+            <button class="btn danger" onclick="deleteBooking('${b.id}')">Delete</button>
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function markCalled(id){
+  const b = bookings.find(b=>b.id===id);
+  if(b){ b.status='Called'; DB.save('bookings', bookings); render('admin'); }
+}
+function deleteBooking(id){
+  bookings = bookings.filter(b=>b.id!==id);
+  DB.save('bookings', bookings);
+  render('admin');
+}
+
+/* ---------- INIT ---------- */
+session = DB.load('session', null);
+render(session ? (session.type==='admin' ? 'admin' : 'booking') : 'home');
+</script>
+
+</body>
+</html>
